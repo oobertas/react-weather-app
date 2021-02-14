@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Orbitals } from 'react-spinners-css';
 import './Weather.css';
+import FriendlyDate from './FriendlyDate';
 
 export default function Weather(props){
   const [weatherData, setWeatherData] = useState({ready: false});
@@ -10,7 +11,7 @@ export default function Weather(props){
     setWeatherData({
       ready: true,
       city: response.data.name,
-      date: 'Sunday 3:30pm',
+      date: new Date(response.data.dt*1000),
       description: response.data.weather[0].description,
       temperature: Math.round(response.data.main.temp),
       humidity: Math.round(response.data.main.humidity),
@@ -41,7 +42,9 @@ export default function Weather(props){
           </form>
           <h1 id = 'city'>{weatherData.city}</h1>
           <ul>
-            <li id = 'current_date'>{weatherData.date}</li>
+            <li id = 'current_date'>
+              <FriendlyDate date = {weatherData.date}/>
+            </li>
             <li>Mostly Cloudy</li>
           </ul>
           <div className = 'row mt-3'>
