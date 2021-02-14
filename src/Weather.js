@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Orbitals } from 'react-spinners-css';
 import './Weather.css';
 
-export default function Weather(){
+export default function Weather(props){
+  const [weatherData, setWeatherData] = useState({ready: false});
+  
+  function setData(response) {
+    setWeatherData({
+      ready: true,
+      city: response.data.name,
+      date: 'Sunday 3:30pm',
+      description: response.data.weather[0].description,
+      temperature: Math.round(response.data.main.temp),
+      humidity: Math.round(response.data.main.humidity),
+      windSpeed: Math.round(response.data.wind.speed),
+      icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    });
+  }
+
+  if(weatherData.ready){
     return(
         <div className = 'Weather'>
           <form>
@@ -21,19 +39,19 @@ export default function Weather(){
               </div>    
             </div> 
           </form>
-          <h1 id = 'city'>New York</h1>
+          <h1 id = 'city'>{weatherData.city}</h1>
           <ul>
-            <li id = 'current_date'>Sunday 3:30pm</li>
+            <li id = 'current_date'>{weatherData.date}</li>
             <li>Mostly Cloudy</li>
           </ul>
           <div className = 'row mt-3'>
             <div className = 'col-6'>
               <div className = 'clearfix'>
-                <img src = './weather_icons/svg/001-sunny.svg'
-                     alt = 'sunny icon'
+                <img src = {weatherData.icon}
+                     alt = {weatherData.description}
                      className = 'float-left' />
                 <div className = 'float-left'>    
-                  <span id = 'current_temperature'> 6 </span>
+                  <span id = 'current_temperature'> {weatherData.temperature} </span>
                   <span id = 'unit'>°C</span>
                 </div> 
               </div>    
@@ -41,11 +59,17 @@ export default function Weather(){
            <div className = 'col-6'>
             <ul>
              <li>Precipitation: 15%</li> 
-             <li>Humidity: 15% </li> 
-             <li>Wind Speed: 15 km/h </li> 
+             <li>Humidity: {weatherData.humidity}% </li> 
+             <li>Wind Speed: {weatherData.windSpeed} km/h </li> 
             </ul>  
            </div> 
           </div>
         </div>
-    )
+    );
+  } else {
+      const apiKey = "554c41227aff1009c4a80ad1aa690508";
+      let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
+      axios.get(apiUrl).then(setData);
+      return <Orbitals color = 'rgb(135, 135, 135)'/>;
+    }
 }
