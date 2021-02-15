@@ -17,7 +17,7 @@ export default function Weather(props){
       temperature: Math.round(response.data.main.temp),
       humidity: Math.round(response.data.main.humidity),
       windSpeed: Math.round(response.data.wind.speed),
-      icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+      icon: `public/images/001-sunny.png`//`https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     });
   }
 
