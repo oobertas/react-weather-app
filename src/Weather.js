@@ -12,7 +12,7 @@ export default function Weather(props){
     setWeatherData({
       ready: true,
       city: response.data.name,
-      date: new Date(response.data.dt*1000),
+      date: new Date(),
       description: response.data.weather[0].description,
       temperature: Math.round(response.data.main.temp),
       humidity: Math.round(response.data.main.humidity),
@@ -50,10 +50,10 @@ export default function Weather(props){
                   onChange = {changeCity} />
               </div>
               <div className = 'col-3'>
-                <input 
-                  type = 'submit' 
-                  value = 'Search' 
-                  className = 'btn btn-primary w-100' />
+                <div className = "btn-group search-buttons" role="group" aria-label="outlined">
+                  <button type = 'submit' className="btn btn-info">🔍</button>
+                  <button type="button" className="btn btn-warning">📍</button>
+                </div>
               </div>    
             </div> 
           </form>
