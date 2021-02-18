@@ -3,6 +3,14 @@ import FriendlyDate from './FriendlyDate';
 import WeatherTemperature from './WeatherTemperature';
 
 export default function WeatherInfo(props){
+
+    let celsiusTemperature = props.data.temperature;
+    let girlClothes = celsiusTemperature <= 0 ? 'freeze' 
+        : celsiusTemperature > 0 && celsiusTemperature < 15 ? 'cold' 
+        : celsiusTemperature >= 15 && celsiusTemperature < 23 ? 'warm' 
+        : celsiusTemperature >= 23 ? 'hot' : 'warm';
+    let girlImage = `/images/${girlClothes}.png`;
+
     return ( 
         <div className = 'WeatherInfo'>
             <h1 id = 'city'>{props.data.city}</h1>
@@ -19,7 +27,7 @@ export default function WeatherInfo(props){
                              alt = {props.data.description}
                              className = 'float-left' />
                             <div className = 'float-left'>    
-                                <WeatherTemperature celsius = {props.data.temperature} />
+                                <WeatherTemperature celsius = {celsiusTemperature} />
                             </div> 
                         </div>    
                     </div>
@@ -28,6 +36,7 @@ export default function WeatherInfo(props){
                         <li>Humidity: {props.data.humidity}% </li> 
                         <li>Wind Speed: {props.data.windSpeed} km/h </li> 
                     </ul>  
+                    <img src = {girlImage} alt = 'girl picture'></img>
                     </div> 
             </div >
         </div>
