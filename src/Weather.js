@@ -17,7 +17,7 @@ export default function Weather(props){
       temperature: Math.round(response.data.main.temp),
       humidity: Math.round(response.data.main.humidity),
       windSpeed: Math.round(response.data.wind.speed),
-      icon: `public/images/001-sunny.png`//`https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+      icon: `/images/${response.data.weather[0].icon}.png`//`https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     });
   }
 
@@ -36,6 +36,20 @@ export default function Weather(props){
     setCity(event.target.value);
   }
 
+  function searchLocation(position) {
+    const apiKey = "554c41227aff1009c4a80ad1aa690508";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(setData);
+  
+    // apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+    // axios.get(apiUrl).then(displayForecast);
+  }
+
+  function getCurrentLocation(event) {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(searchLocation);
+  }
+
   if(weatherData.ready){
     return(
         <div className = 'Weather'>
@@ -52,7 +66,7 @@ export default function Weather(props){
               <div className = 'col-3'>
                 <div className = "btn-group search-buttons" role="group" aria-label="outlined">
                   <button type = 'submit' className="btn btn-info">🔍</button>
-                  <button type="button" className="btn btn-warning">📍</button>
+                  <button type="button" className="btn btn-warning" onClick = {getCurrentLocation}>📍</button>
                 </div>
               </div>    
             </div> 
