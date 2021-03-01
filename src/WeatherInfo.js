@@ -29,15 +29,17 @@ export default function WeatherInfo(props){
                             <div className = 'float-left'>    
                                 <WeatherTemperature celsius = {celsiusTemperature} />
                             </div> 
-                        </div>    
-                    </div>
-                    <div className = 'col-6'>
-                    <ul>
-                        <li>Humidity: {props.data.humidity}% </li> 
-                        <li>Wind Speed: {props.data.windSpeed} km/h </li> 
-                    </ul>  
-                    <img src = {girlImage} alt = 'girl picture'></img>
+                    </div>    
+                </div>
+                <div className = 'row'>
+                    <div className = 'col'>
+                        <ul>
+                            <li>Humidity: {props.data.humidity}% </li> 
+                            <li>Wind Speed: {props.data.windSpeed} km/h </li> 
+                        </ul>
                     </div> 
+                    <img src = {girlImage} alt = 'girl picture'></img>
+                </div> 
             </div >
         </div>
     );
