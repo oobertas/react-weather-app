@@ -27,7 +27,7 @@ export default function WeatherInfo(props){
                              alt = {props.data.description}
                              className = 'float-left' />
                             <div className = 'float-left'>    
-                                <WeatherTemperature celsius = {celsiusTemperature} />
+                                <WeatherTemperature celsius = {celsiusTemperature} forecastTemperature = {props.forecastTemperature} />
                             </div> 
                     </div>    
                 </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import FriendlyDate from './FriendlyDate';
 
 export default function WeatherForecastTemplate(props){
+
     function hours() {
         let date = new Date(props.data.dt * 1000);
         let hours = date.getHours();

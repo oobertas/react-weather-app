@@ -8,6 +8,7 @@ import './Weather.css';
 export default function Weather(props){
   const [weatherData, setWeatherData] = useState({ready: false});
   const [city, setCity] = useState(props.defaultCity);
+  const [forecastTemp, setForecastTemp] = useState([]);
   
   function setData(response) {
     setWeatherData({
@@ -26,6 +27,9 @@ export default function Weather(props){
     const apiKey = "554c41227aff1009c4a80ad1aa690508";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(setData);
+
+    let forecastApiUrl =`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(forecastApiUrl).then(handleForecastResponse); 
   }
 
   function handleSubmit(event){
@@ -37,10 +41,21 @@ export default function Weather(props){
     setCity(event.target.value);
   }
 
+  function handleForecastResponse(response){
+    let temperature = [];
+    for (let i = 0; i<6; i++){
+      temperature[i] = Math.round(response.data.list[i].main.temp);
+    }
+    return setForecastTemp(temperature);   
+  }
+
   function searchLocation(position) {
     const apiKey = "554c41227aff1009c4a80ad1aa690508";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(setData);
+
+    // apiUrl=`https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${apiKey}&units=metric`;
+    // axios.get(apiUrl).then(handleForecastResponse); 
   }
 
   function getCurrentLocation(event) {
@@ -69,8 +84,8 @@ export default function Weather(props){
               </div>    
             </div> 
           </form>
-          <WeatherInfo data = {weatherData}/>
-          <WeatherForecast city = {weatherData.city}/>
+          <WeatherInfo data = {weatherData} forecastTemperature = {forecastTemp} />
+          <WeatherForecast city = {weatherData.city} />
         </div>
     );
   } else {
