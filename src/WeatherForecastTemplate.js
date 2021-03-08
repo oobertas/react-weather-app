@@ -2,12 +2,7 @@ import React from 'react';
 import FriendlyDate from './FriendlyDate';
 
 export default function WeatherForecastTemplate(props){
-
-    function hours() {
-        let date = new Date(props.data.dt * 1000);
-        let hours = date.getHours();
-        return `${hours}:00`;
-    }
+    let date = new Date(props.data.dt * 1000);
     
     function temperature(){
         let temp = Math.round(props.data.main.temp);
@@ -18,7 +13,9 @@ export default function WeatherForecastTemplate(props){
     
   return (  
     <div className = 'template col'>
-        {hours()}
+        <div className = 'forecastDate'>
+            <FriendlyDate date = {date} weekDayOnly = {true}/>
+        </div>
         <img src = {icon}
              alt = {props.data.weather[0].description}
         />

@@ -16,7 +16,7 @@ export default function WeatherInfo(props){
             <h1 id = 'city'>{props.data.city}</h1>
                 <ul>
                     <li id = 'current_date'>
-                        <FriendlyDate date = {props.data.date}/>
+                        <FriendlyDate date = {props.data.date} />
                     </li>
                     <li>{props.data.description}</li>
                 </ul>

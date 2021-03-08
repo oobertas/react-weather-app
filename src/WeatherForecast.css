@@ -17,3 +17,13 @@
     font-weight: 400;
     margin-left: 10px;
 }
+
+.forecastDate {
+    text-align: center;
+    font-size: 10px;
+}
+
+.weekDayForecast {
+    color: #17a2b8;
+    font-size: 16px;
+}
