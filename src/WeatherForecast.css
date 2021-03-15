@@ -11,7 +11,7 @@
 .temp {
     font-family: 'Alfa Slab One', cursive;
     color: rgb(33, 33, 33);
-    font-size: 18px;
+    font-size: 20px;
     line-height: 64px;
     margin-left: 5px;
     font-weight: 400;
@@ -19,8 +19,8 @@
 }
 
 .forecastDate {
-    text-align: center;
-    font-size: 10px;
+    font-size: 16px;
+    color: black;
 }
 
 .weekDayForecast {

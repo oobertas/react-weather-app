@@ -1,28 +1,18 @@
 import React, {useState} from 'react';
 
 export default function WeatherTemperature(props){
-    const [unit, setUnit] = useState('celsius');
-    const forecastUnit = document.querySelectorAll('.temp');
 
     function showFahrenheit(event){
         event.preventDefault();
-        setUnit('fahrenheit');
-        let convertForecastToFahrenheit;
-        for (let i = 0; i < 6; i++){
-            convertForecastToFahrenheit = (props.forecastTemperature[i]*9/5)+32;
-            forecastUnit[i].innerHTML = `${Math.round(convertForecastToFahrenheit)}°F`;
-        }
+        props.setUnit('fahrenheit');
     }
 
     function showCelsius(event){
         event.preventDefault();
-        setUnit('celsius');
-        for (let i = 0; i < 6; i++){
-            forecastUnit[i].innerHTML = `${props.forecastTemperature[i]}°C`
-        }
+        props.setUnit('celsius');
     }
 
-    if (unit === 'celsius'){
+    if (props.unit === 'celsius'){
         return(
         <div className = 'weatherTemperature'>
             <span id = 'current_temperature'> 

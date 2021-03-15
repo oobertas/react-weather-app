@@ -16,11 +16,11 @@ export default function WeatherForecast(props){
     if (loaded && props.city === forecast.city.name) {
         return (
             <div className = 'weatherForecast row'>
-                <WeatherForecastTemplate data = {forecast.list[7]} />
-                <WeatherForecastTemplate data = {forecast.list[13]} />
-                <WeatherForecastTemplate data = {forecast.list[21]} />
-                <WeatherForecastTemplate data = {forecast.list[29]} />
-                <WeatherForecastTemplate data = {forecast.list[37]} />
+                <WeatherForecastTemplate data = {forecast.list[7]} unit={props.unit}/>
+                <WeatherForecastTemplate data = {forecast.list[13]} unit={props.unit}/>
+                <WeatherForecastTemplate data = {forecast.list[21]} unit={props.unit}/>
+                <WeatherForecastTemplate data = {forecast.list[29]} unit={props.unit}/>
+                <WeatherForecastTemplate data = {forecast.list[37]} unit={props.unit}/>
             </div> 
         );
     } else {

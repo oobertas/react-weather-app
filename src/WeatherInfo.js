@@ -3,7 +3,6 @@ import FriendlyDate from './FriendlyDate';
 import WeatherTemperature from './WeatherTemperature';
 
 export default function WeatherInfo(props){
-
     let celsiusTemperature = props.data.temperature;
     let girlClothes = celsiusTemperature <= 0 ? 'freeze' 
         : celsiusTemperature > 0 && celsiusTemperature < 15 ? 'cold' 
@@ -27,7 +26,7 @@ export default function WeatherInfo(props){
                              alt = {props.data.description}
                              className = 'float-left' />
                             <div className = 'float-left'>    
-                                <WeatherTemperature celsius = {celsiusTemperature} forecastTemperature = {props.forecastTemperature} />
+                                <WeatherTemperature celsius = {celsiusTemperature} unit={props.unit} setUnit={props.setUnit}/>
                             </div> 
                     </div>    
                 </div>
