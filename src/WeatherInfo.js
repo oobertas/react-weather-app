@@ -17,7 +17,6 @@ export default function WeatherInfo(props){
                     <li id = 'current_date'>
                         <FriendlyDate date = {props.data.date} />
                     </li>
-                    <li>{props.data.description}</li>
                 </ul>
             <div className = 'row mt-3'>
                 <div className = 'col-6'>

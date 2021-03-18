@@ -24,6 +24,7 @@
 }
 
 .weekDayForecast {
-    color: #17a2b8;
+    color: #ffc107;
     font-size: 16px;
+    -webkit-text-stroke: 0.2px black;
 }

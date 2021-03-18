@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('https://cdn.shopify.com/s/files/1/0832/9301/collections/allfour_copy.png?v=1552765485');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 code {
